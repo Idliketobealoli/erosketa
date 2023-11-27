@@ -19,13 +19,13 @@ import ies.joatzel.categoriesspring.repositories.CategoryRepository
  *  False - Si no cumple alguna de ellas.
  *  @author Daniel Rodriguez Muñoz
  */
-fun productIsValid(product: ProductDTOcreate, categoryRepo: CategoryRepository): Boolean {
-    val category = categoryRepo.findById(product.categoryId)
+fun ProductDTOcreate.isValid(categoryRepo: CategoryRepository): Boolean {
+    val category = categoryRepo.findById(categoryId)
 
-    return !(product.id <= 0 ||
-            product.name.trim().isBlank() ||
-            product.description.trim().isBlank() ||
-            product.price <= 0 ||
-            product.stock <= 0 ||
+    return !(id <= 0 ||
+            name.trim().isBlank() ||
+            description.trim().isBlank() ||
+            price <= 0 ||
+            stock <= 0 ||
             category == null)
 }

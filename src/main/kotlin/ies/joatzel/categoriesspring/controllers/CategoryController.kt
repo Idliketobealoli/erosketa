@@ -4,7 +4,7 @@ import ies.joatzel.categoriesspring.config.APIConfig
 import ies.joatzel.categoriesspring.dto.CategoryDTO
 import ies.joatzel.categoriesspring.dto.CategoryDTOcreate
 import ies.joatzel.categoriesspring.services.CategoryService
-import ies.joatzel.categoriesspring.validators.categoryIsValid
+import ies.joatzel.categoriesspring.validators.isValid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
@@ -85,7 +85,7 @@ class CategoryController @Autowired constructor(
      */
     @PostMapping
     fun postCategory(@RequestBody category: CategoryDTOcreate): ResponseEntity<CategoryDTO> {
-        if (!categoryIsValid(category)) { return ResponseEntity.badRequest().build() }
+        if (!category.isValid()) { return ResponseEntity.badRequest().build() }
 
         val saved = service.save(category)
 

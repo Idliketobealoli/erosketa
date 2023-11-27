@@ -5,7 +5,7 @@ import ies.joatzel.categoriesspring.dto.ProductDTO
 import ies.joatzel.categoriesspring.dto.ProductDTOcreate
 import ies.joatzel.categoriesspring.repositories.CategoryRepository
 import ies.joatzel.categoriesspring.services.ProductService
-import ies.joatzel.categoriesspring.validators.productIsValid
+import ies.joatzel.categoriesspring.validators.isValid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
@@ -87,7 +87,7 @@ class ProductController @Autowired constructor(
      */
     @PostMapping
     fun postProduct(@RequestBody product: ProductDTOcreate): ResponseEntity<ProductDTO> {
-        if (!productIsValid(product, categoryRepo)) { return ResponseEntity.badRequest().build() }
+        if (!product.isValid(categoryRepo)) { return ResponseEntity.badRequest().build() }
 
         val saved = service.save(product)
 

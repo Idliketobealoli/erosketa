@@ -15,8 +15,8 @@ import ies.joatzel.categoriesspring.dto.CategoryDTOcreate
  *  False - Si no cumple alguna de ellas.
  *  @author Daniel Rodriguez Muñoz
  */
-fun categoryIsValid(category: CategoryDTOcreate): Boolean {
-    return !(category.id <= 0 ||
-            category.name.trim().isBlank() ||
-            category.description.trim().isBlank())
+fun CategoryDTOcreate.isValid(): Boolean {
+    return !(id <= 0 ||
+            name.trim().isBlank() ||
+            description.trim().isBlank())
 }

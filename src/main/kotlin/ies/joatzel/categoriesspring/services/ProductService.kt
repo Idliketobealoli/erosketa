@@ -69,6 +69,7 @@ class ProductService @Autowired constructor(
         return repo.save(category.fromDTO()).toDTO(categoryRepo, repo)
     }
 
+    @CachePut
     override fun decreaseStock(id: Long): ProductDTO? {
         return repo.decreaseStock(id)?.toDTO(categoryRepo, repo)
     }
